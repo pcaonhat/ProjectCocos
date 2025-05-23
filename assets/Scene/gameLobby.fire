@@ -3018,7 +3018,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1538a477-1359-49f5-9374-52dbfbd73491"
+      "__uuid__": "a3fdc700-9fe8-4198-bfd8-706dad8b614e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -3509,7 +3509,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1538a477-1359-49f5-9374-52dbfbd73491"
+      "__uuid__": "a3fdc700-9fe8-4198-bfd8-706dad8b614e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -4000,7 +4000,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1538a477-1359-49f5-9374-52dbfbd73491"
+      "__uuid__": "a3fdc700-9fe8-4198-bfd8-706dad8b614e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -4513,7 +4513,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1538a477-1359-49f5-9374-52dbfbd73491"
+      "__uuid__": "a3fdc700-9fe8-4198-bfd8-706dad8b614e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -5845,7 +5845,7 @@
   {
     "__type__": "cc.Node",
     "_name": "bgState",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 127
     },
