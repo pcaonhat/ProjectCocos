@@ -159,7 +159,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 415.69219381653056
+      "z": 416.55821922031504
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -1448,7 +1448,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 115.32,
+      "width": 124.88,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1494,8 +1494,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "Name",
-    "_N$string": "Name",
+    "_string": "Archer",
+    "_N$string": "Archer",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1566,12 +1566,12 @@
       "__id__": 16
     },
     "component": "",
-    "_componentId": "3193e5mBrxEIb7DDxTRQUVS",
+    "_componentId": "1eb03o4BbJFWrbYa0osM2VF",
     "handler": "changeSelectedCharacter",
     "customEventData": ""
   },
   {
-    "__type__": "3193e5mBrxEIb7DDxTRQUVS",
+    "__type__": "1eb03o4BbJFWrbYa0osM2VF",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1585,7 +1585,7 @@
     "characterController": {
       "__id__": 27
     },
-    "_id": "24NAZkti9McJaIddP/PIwk"
+    "_id": "ebqGEdZelIH4KKVsOpZ7it"
   },
   {
     "__type__": "cc.Node",
@@ -1969,12 +1969,12 @@
       "__id__": 36
     },
     "component": "",
-    "_componentId": "3193e5mBrxEIb7DDxTRQUVS",
+    "_componentId": "1eb03o4BbJFWrbYa0osM2VF",
     "handler": "changeSelectedCharacter",
     "customEventData": ""
   },
   {
-    "__type__": "3193e5mBrxEIb7DDxTRQUVS",
+    "__type__": "1eb03o4BbJFWrbYa0osM2VF",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1988,7 +1988,7 @@
     "characterController": {
       "__id__": 27
     },
-    "_id": "a5b8NwTXZM+Iupc/CYeYQn"
+    "_id": "f6MGXO0BxDsanyAdxtws4k"
   },
   {
     "__type__": "cc.Canvas",
