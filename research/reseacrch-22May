@@ -1,0 +1,54 @@
+* Wrap mode, Filter Mode và Premultiply Alpha.
+Premultiply alpha: thể hiện kênh màu alpha được nhân trước với kênh màu RGB của ảnh, nếu phần này bị uncheck thì ngược lại.
+VD: khi lưu giá trị màu đỏ với alpha = 0.5
+    - Premultiply Alpha: (127, 0, 0, 0.5)
+    - Non-Premultiply Alpha: (255, 0, 0, 0.5)
+Việc này sẽ giúp tăng hiệu quả lưu trữ và tính toán khi load màu của ảnh
+Ngoài ra giúp việc tính toán nội suy màu điểm ảnh được chính xác hơn. Giúp việc hiển thị màu của ảnh trong các trường hợp phải zoom lên không bị hiển thị sai màu
+
+Wrap mode: Thông thường, giá trị tọa độ UV của texture nằm trong khoảng [0, 1]. Khi tọa độ texture trong dữ liệu vertex truyền vào vượt quá phạm vi [0, 1], chúng sẽ được xử lý dựa trên chế độ wrap (wrap mode)
+    - Clamp mode: Giới hạn tọa độ texture trong khoảng [0, 1]. Các phần vượt ngoài phạm vi sẽ lặp lại pixel ở rìa ảnh để mở rộng.
+    - Wrap mode: Các tọa độ texture vượt ngoài phạm vi [0, 1] sẽ được lặp lại. Nghĩa là texture sẽ được nhân bản theo cả chiều ngang và/hoặc dọc.
+
+Filter mode: Cách thể hiện màu của texture khi kích thước của ảnh không phù hợp với kích thước gốc, ảnh sẽ hiển thị màu sắc dựa vào filter mode phù hợp
+    - Point Filtering: Chọn màu của texel gần nhất với tâm pixel để hiển thị.
+        + Thuật toán đơn giản, tốc độ xử lý nhanh.
+        + Có hiện tượng: vỡ hình khi phóng to (magnification) +  gợn sóng khi thu nhỏ (minification).
+    - Bilinear Filtering: Trộn màu bằng trung bình có trọng số theo khoảng cách.
+        + Loại bỏ hiện tượng vỡ hình khi phóng to và chuyển màu mượt mà hơn giữa các texel.
+        + Tính toán chậm hơn
+    - Trilinear Filtering: Thực hiện lọc bilinear ở cả hai, sau đó nội suy tuyến tính giữa chúng.
+        + Hiển thị tốt nhất, mượt và sắc nét trong mọi điều kiện thu phóng.
+        + Chi phí tính toán cao nhất.
+
+* Auto atlas
+
+Auto Atlas Asset là một tính năng đóng gói sprite sheet có sẵn trong Cocos Creator, cho phép chỉ định một loạt các hình ảnh riêng lẻ để đóng gói thành một bức ảnh lớn. Chức năng này tương tự như Texture Packer.
+
+Tạo Auto Atlas
+    - Assets, nhấp chuột phải vào thư mục -> Create -> Auto Atlas 
+    - Một assets AutoAtlas.pac sẽ được tạo để lưu cấu hình atlas cho thư mục hiện tại
+
+Sau khi tạo Auto Atlas:
+    - Tất cả assets SpriteFrame trong thư mục hiện tại (bao gồm cả thư mục con) sẽ được dùng để tạo atlas trong quá trình build
+    - Các SpriteFrame mới thêm vào thư mục sau này sẽ tự động được thêm vào atlas
+    - Các thiết lập trên SpriteFrame (như trim) sẽ được giữ nguyên trong atlas đã tạo
+Các thuộc tính của Auto Atlas
+    - Max Width: Chiều rộng tối đa của một atlas
+    - Max Height: Chiều cao tối đa của một atlas
+    - Padding: Khoảng cách giữa các sprite trong atlas
+    - Allow Rotation: Cho phép xoay các sprite để tối ưu đóng gói
+    - Force Squared: Bắt buộc kích thước atlas là hình vuông
+    - Power Of Two: Đặt kích thước atlas thành lũy thừa của 2
+    - Heuristics: Chiến lược đóng gói atlas: [BestShortSideFit, BestLongSideFit, BestAreaFit, BottomLeftRule, ContactPointRule]
+    - Padding Bleed: Thêm 1 pixel xung quanh mỗi texture (còn gọi là "Extrude")
+    - Filter Unused Resources: Chỉ có tác dụng trong quá trình build, không áp dụng khi preview
+
+* Các loại font
+- System font
+    + Các font mặc định có sẵn cảu cocos, các node lable mặc định sẽ sử dụng font này khi chọn use system font property từ lable component
+- Dynamic Font
+    + Hiện tại cocos chỉ hỗ trợ các file TTF cho dynamic font. Chỉ cần kéo file vào thư mục assets thì font sẽ được import
+- Bitmap font 
+    + Bao gồm 2 phần: .fnt font file và ảnh .png. Với file ảnh .png là ảnh cụ thể và .fnt là index của từng kí tự trên map
+    + Khi sử dụng phải đảm bảo cả 2 file đều được import và nằm cùng 1 thư mục.
