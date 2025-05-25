@@ -3,17 +3,22 @@ cc.Class({
     extends: require("popupItem"),
 
     properties: {
+        soundController: require("soundController"),
     },
 
-    // start(){
-    //     this._super();
-    // },
-    
-    // show(){
-    //     this._super();
-    // },
+    onMusicToggleChange(toggle){
+        if(toggle.isChecked){
+            this.soundController.playBGM();
+        } else {
+            this.soundController.stopBMG();
+        }
+    },
 
-    // hide() {
-    //     this._super();
-    // }
+    onSoundToggleChange(toggle){
+        if(toggle.isChecked){
+            this.soundController.setIsPlayingSound(true);
+        } else {
+            this.soundController.setIsPlayingSound(false);
+        }
+    }
 });
