@@ -4,13 +4,22 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
+        popupController: require("popupController"),
     },
 
-
-    start () {
-
+    showSettingPopup(){
+        this.popupController.showSetting();
     },
 
-    // update (dt) {},
+    hideSettingPopup(){
+        this.popupController.hideSetting();
+    },
+
+    showRankPopup(){
+        this.popupController.showRank();
+    },
+
+    hideRankPopup(){
+        this.popupController.hideRank();
+    }
 });
