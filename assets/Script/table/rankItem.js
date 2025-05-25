@@ -4,7 +4,8 @@ cc.Class({
 
     properties: {
         labelPlayer: cc.Label,
-        labelRank: cc.Label
+        labelRank: cc.Label,
+        border: cc.Node,
     },
 
     onLoad () {
@@ -14,15 +15,16 @@ cc.Class({
         let nodeRankFlag = this.node.getChildByName("rankFlag");
         let nodeRankLabel = nodeRankFlag.getChildByName("label");
         this.labelRank = nodeRankLabel.getComponent(cc.Label);
+
+        this.border = this.node.getChildByName("border");
     },
 
-    start () {
-
+    setInfo(order, playerData){
+        this.labelPlayer.string = order + ". " + playerData.name;
+        this.labelRank.string = playerData.rank;
     },
-
-    setItemInfo(order, playerName, rank){
-        this.labelPlayer.string = order + ". " + playerName;
-        this.labelRank.string = rank;
-    }
-    // update (dt) {},
+    
+    setBorderColor(color) {
+        this.border.color = color;
+    },
 });

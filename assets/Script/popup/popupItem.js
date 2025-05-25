@@ -5,10 +5,6 @@ cc.Class({
     properties: {
     },
 
-    start(){
-        this.node.active = false;
-    },
-
     show(){
         this.node.active = true;
     },
