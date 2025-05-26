@@ -20,7 +20,7 @@ cc.Class({
     },
 
     onLoad () {
-        this.playBGM();
+        this.playMusic();
     },
     
     playMusic(){
