@@ -8,7 +8,6 @@ cc.Class({
         rankItemList: [require("rankItem")],
     },
 
-
     onLoad(){
         for(let i = 0; i < 10; i++){
             const item = cc.instantiate(this.rankItemPrefab);
