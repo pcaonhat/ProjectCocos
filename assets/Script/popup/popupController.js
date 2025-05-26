@@ -16,7 +16,7 @@ cc.Class({
     },
 
     showSetting(){
-        if(this.isShowing){
+        if(this.getIsShowing()){
             return;
         }
         this.popupSetting.show();
@@ -29,17 +29,17 @@ cc.Class({
     },
 
     showRank(){
-        if(this.isShowing){
+        if(this.getIsShowing()){
             return;
         }
         let fakeData = [
-            { name: "Player1", rank: "Gold II" },
-            { name: "Player2", rank: "Silver IV" },
-            { name: "Player3", rank: "Bronze V" },
-            { name: "Player4", rank: "Bronze V"},
-            { name: "Player5", rank: "Bronze V" },
-            { name: "Player6", rank: "Bronze V" },
-            { name: "Player7", rank: "Bronze V" },
+            {order: "1", name: "Player1", rank: "Gold II" },
+            {order: "2", name: "Player2", rank: "Gold III" },
+            {order: "3", name: "Player3", rank: "Gold IV" },
+            {order: "4", name: "Player4", rank: "Bronze I" },
+            {order: "5", name: "Player5", rank: "Bronze II" },
+            {order: "6", name: "Player6", rank: "Bronze IV" },
+            {order: "7", name: "Player7", rank: "Bronze V" },
         ];
         this.popupRank.show(fakeData);
         this.setIsShowing(true);
@@ -53,4 +53,8 @@ cc.Class({
     setIsShowing(isShowing) {
         this.isShowing = isShowing;
     },
+
+    getIsShowing() {
+        return this.isShowing;
+    }
 });

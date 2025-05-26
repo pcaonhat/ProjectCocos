@@ -23,12 +23,12 @@ cc.Class({
         this.playBGM();
     },
     
-    playBGM(){
+    playMusic(){
         console.log("Playe BGM");
         cc.audioEngine.playMusic(this.audioBGM, true);
     },
 
-    stopBMG(){
+    stopMusic(){
         cc.audioEngine.stopMusic();
     },
 

@@ -34,7 +34,7 @@ cc.Class({
         this._super();
         for(let i = 0; i < this.rankItemList.length; i++){
             if(i < playerData.length){
-                this.rankItemList[i].setInfo(i + 1, playerData[i]);
+                this.rankItemList[i].setInfo(playerData[i]);
             } else {
                 this.rankItemList[i].node.active = false;
             }
