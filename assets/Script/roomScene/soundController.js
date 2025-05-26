@@ -13,21 +13,37 @@ cc.Class({
             type: cc.AudioClip,
             default: null
         },
-    },
 
+        isPlayingSound: {
+            default: true,
+        },
+    },
 
     onLoad () {
-        this.playBGM();
+        this.playMusic();
+    },
+    
+    playMusic(){
+        console.log("Playe BGM");
+        cc.audioEngine.playMusic(this.audioBGM, true);
     },
 
-    
-    playBGM(){
-        console.log("Playe BGM");
-        cc.audioEngine.play(this.audioBGM, false, 1);
+    stopMusic(){
+        cc.audioEngine.stopMusic();
     },
 
     playOnclickSound(){
-        console.log("Play Onclick");
-        cc.audioEngine.play(this.audioClick, false, 1);
+        if(!this.getIsPlayingSound()){
+            return;
+        }
+        cc.audioEngine.playEffect(this.audioClick, false, 1);
     },
+
+    setIsPlayingSound(isPlaying) {
+        this.isPlayingSound = isPlaying;
+    },
+
+    getIsPlayingSound() {
+        return this.isPlayingSound;
+    }
 });

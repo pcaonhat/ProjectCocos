@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "ed0f1b01-49ad-4a78-b6f0-58a02626319e",
+  "uuid": "ebca5a80-ecfb-4d1f-9bda-ec2759487c8d",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "WingBadge_Bottom_Flag_Left": {
+    "Button_Rectangle_01_Convex_Gray": {
       "ver": "1.0.4",
-      "uuid": "e46ea5b3-853e-4fd1-8b35-e35e7cb083d8",
-      "rawTextureUuid": "ed0f1b01-49ad-4a78-b6f0-58a02626319e",
+      "uuid": "2b175570-af3d-41d5-8e87-2006ea087dc4",
+      "rawTextureUuid": "ebca5a80-ecfb-4d1f-9bda-ec2759487c8d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,12 +20,12 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 36,
-      "height": 176,
-      "rawWidth": 36,
-      "rawHeight": 176,
-      "borderTop": 51,
-      "borderBottom": 107,
+      "width": 159,
+      "height": 104,
+      "rawWidth": 159,
+      "rawHeight": 104,
+      "borderTop": 0,
+      "borderBottom": 0,
       "borderLeft": 0,
       "borderRight": 0,
       "subMetas": {}
