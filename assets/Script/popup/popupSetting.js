@@ -8,9 +8,9 @@ cc.Class({
 
     onMusicToggleChange(toggle){
         if(toggle.isChecked){
-            this.soundController.playBGM();
+            this.soundController.playMusic();
         } else {
-            this.soundController.stopBMG();
+            this.soundController.stopMusic();
         }
     },
 

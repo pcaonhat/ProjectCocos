@@ -33,7 +33,7 @@ cc.Class({
     },
 
     playOnclickSound(){
-        if(!this.isPlayingSound){
+        if(!this.getIsPlayingSound()){
             return;
         }
         cc.audioEngine.playEffect(this.audioClick, false, 1);
@@ -41,5 +41,9 @@ cc.Class({
 
     setIsPlayingSound(isPlaying) {
         this.isPlayingSound = isPlaying;
+    },
+
+    getIsPlayingSound() {
+        return this.isPlayingSound;
     }
 });
