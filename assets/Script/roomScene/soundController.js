@@ -30,7 +30,9 @@ cc.Class({
             "playOnclickSound": this.playOnclickSound.bind(this),
             "turnOnSound": this.setIsPlayingSound.bind(this, true),
             "turnOffSound": this.setIsPlayingSound.bind(this, false),
+            "setSoundVolume": this.setSoundVolume.bind(this),
             "playMusic": this.playMusic.bind(this),
+            "setMusicVolume": this.setMusicVolume.bind(this),
             "stopMusic": this.stopMusic.bind(this),
         };
     },
@@ -38,6 +40,10 @@ cc.Class({
     playMusic(){
         console.log("Play Music");
         cc.audioEngine.playMusic(this.audioBGM, true);
+    },
+
+    setMusicVolume(volume) {
+        cc.audioEngine.setMusicVolume(volume);
     },
 
     stopMusic(){
@@ -49,6 +55,10 @@ cc.Class({
             return;
         }
         cc.audioEngine.playEffect(this.audioClick, false, 1);
+    },
+
+    setSoundVolume(volume) {
+        cc.audioEngine.setEffectsVolume(volume);
     },
 
     setIsPlayingSound(isPlaying) {
