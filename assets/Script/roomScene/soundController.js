@@ -1,9 +1,9 @@
+const Emitter = require('mEmitter');
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-
         audioBGM: {
             type: cc.AudioClip,
             default: null
@@ -21,10 +21,22 @@ cc.Class({
 
     onLoad () {
         this.playMusic();
+        this.initEventHandlers();
+        this.registerEvent();
+    },
+
+    initEventHandlers() {
+        this.eventMap = {
+            "playOnclickSound": this.playOnclickSound.bind(this),
+            "turnOnSound": this.setIsPlayingSound.bind(this, true),
+            "turnOffSound": this.setIsPlayingSound.bind(this, false),
+            "playMusic": this.playMusic.bind(this),
+            "stopMusic": this.stopMusic.bind(this),
+        };
     },
     
     playMusic(){
-        console.log("Playe BGM");
+        console.log("Play Music");
         cc.audioEngine.playMusic(this.audioBGM, true);
     },
 
@@ -45,5 +57,23 @@ cc.Class({
 
     getIsPlayingSound() {
         return this.isPlayingSound;
+    },
+
+    registerEvent() {
+        for (let eventName in this.eventMap) {
+            Emitter.registerEvent(eventName, this.eventMap[eventName]);
+        }
+    },
+
+    unregisterEvent() {
+        for (let eventName in this.eventMap) {
+            Emitter.removeEvent(eventName, this.eventMap[eventName]);
+        }
+    },
+
+    onDestroy() {
+        this.unregisterEvent();
+        this.eventMap = null;
     }
+
 });

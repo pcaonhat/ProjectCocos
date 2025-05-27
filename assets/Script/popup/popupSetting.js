@@ -1,24 +1,24 @@
+const Emitter = require('mEmitter');
 
 cc.Class({
     extends: require("popupItem"),
 
     properties: {
-        soundController: require("soundController"),
     },
 
     onMusicToggleChange(toggle){
         if(toggle.isChecked){
-            this.soundController.playMusic();
+            Emitter.emit("playMusic");
         } else {
-            this.soundController.stopMusic();
+            Emitter.emit("stopMusic");
         }
     },
 
     onSoundToggleChange(toggle){
         if(toggle.isChecked){
-            this.soundController.setIsPlayingSound(true);
+            Emitter.emit("turnOnSound");
         } else {
-            this.soundController.setIsPlayingSound(false);
+            Emitter.emit("turnOffSound");
         }
     }
 });

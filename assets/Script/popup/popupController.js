@@ -1,4 +1,4 @@
-
+const Emitter = require("mEmitter");
 cc.Class({
     extends: cc.Component,
 
@@ -13,6 +13,17 @@ cc.Class({
     onLoad() {
         this.hideSetting();
         this.hideRank();
+        this.initEventHandlers();
+        this.registerEvent();
+    },
+
+    initEventHandlers() {
+        this.eventMap = {
+            "showSetting": this.showSetting.bind(this),
+            "hideSetting": this.hideSetting.bind(this),
+            "showRank": this.showRank.bind(this),
+            "hideRank": this.hideRank.bind(this),
+        };
     },
 
     showSetting(){
@@ -56,5 +67,32 @@ cc.Class({
 
     getIsShowing() {
         return this.isShowing;
+    },
+
+
+    initEventHandlers() {
+        this.eventMap = {
+            "showSetting": this.showSetting.bind(this),
+            "hideSetting": this.hideSetting.bind(this),
+            "showRank": this.showRank.bind(this),
+            "hideRank": this.hideRank.bind(this)
+        };
+    },
+
+    registerEvent() {
+        for (let eventName in this.eventMap) {
+            Emitter.registerEvent(eventName, this.eventMap[eventName]);
+        }
+    },
+
+    unregisterEvent() {
+        for (let eventName in this.eventMap) {
+            Emitter.removeEvent(eventName, this.eventMap[eventName]);
+        }
+    },
+
+    onDestroy() {
+        this.unregisterEvent();
+        this.eventMap = null;
     }
 });
