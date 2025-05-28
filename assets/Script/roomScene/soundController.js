@@ -39,6 +39,10 @@ cc.Class({
         cc.audioEngine.playMusic(this.audioBGM, true);
     },
 
+    setMusicVolume(volume) {
+        cc.audioEngine.setMusicVolume(volume);
+    },
+
     stopMusic(){
         cc.audioEngine.stopMusic();
     },
@@ -48,6 +52,10 @@ cc.Class({
             return;
         }
         cc.audioEngine.playEffect(this.audioClick, false, 1);
+    },
+
+    setSoundVolume(volume) {
+        cc.audioEngine.setEffectsVolume(volume);
     },
 
     setIsPlayingSound(isPlaying) {

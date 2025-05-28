@@ -20,5 +20,15 @@ cc.Class({
         } else {
             Emitter.emit(EventKeys.ENABLE_SOUND, false);
         }
-    }
+    },
+
+    onMusicSliderChange(slider){
+        const volume = slider.progress;
+        Emitter.emit("setMusicVolume", volume);
+    },
+
+    onSoundSliderChange(slider){
+        const volume = slider.progress;
+        Emitter.emit("setSoundVolume", volume);
+    },
 });
