@@ -20,5 +20,10 @@ cc.Class({
 
     hideRankPopup(){
         Emitter.emit(EventKeys.HIDE_RANK);
+    },
+
+    loadStoryMode() {
+        cc.sys.localStorage.setItem('targetScene', 'storyMode');
+        cc.director.loadScene('loadScene');
     }
 });
