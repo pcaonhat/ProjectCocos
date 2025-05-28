@@ -1,5 +1,5 @@
-const Emitter = require('mEmitter');
-
+const Emitter = require('emitter');
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: cc.Component,
 
@@ -21,17 +21,16 @@ cc.Class({
 
     onLoad () {
         this.playMusic();
-        this.initEventHandlers();
-        this.registerEvent();
+        this.initEventMap();
+        Emitter.registerEventMap(this.eventMap);
     },
 
-    initEventHandlers() {
+    initEventMap() {
         this.eventMap = {
-            "playOnclickSound": this.playOnclickSound.bind(this),
-            "turnOnSound": this.setIsPlayingSound.bind(this, true),
-            "turnOffSound": this.setIsPlayingSound.bind(this, false),
-            "playMusic": this.playMusic.bind(this),
-            "stopMusic": this.stopMusic.bind(this),
+            [EventKeys.PLAY_ON_CLICK_SOUND]: this.playOnclickSound.bind(this),
+            [EventKeys.ENABLE_SOUND]: this.setIsPlayingSound.bind(this),
+            [EventKeys.PLAY_MUSIC]: this.playMusic.bind(this),
+            [EventKeys.STOP_MUSIC]: this.stopMusic.bind(this),
         };
     },
     
@@ -59,20 +58,8 @@ cc.Class({
         return this.isPlayingSound;
     },
 
-    registerEvent() {
-        for (let eventName in this.eventMap) {
-            Emitter.registerEvent(eventName, this.eventMap[eventName]);
-        }
-    },
-
-    unregisterEvent() {
-        for (let eventName in this.eventMap) {
-            Emitter.removeEvent(eventName, this.eventMap[eventName]);
-        }
-    },
-
     onDestroy() {
-        this.unregisterEvent();
+        Emitter.unregisterEventMap(this.eventMap);
         this.eventMap = null;
     }
 

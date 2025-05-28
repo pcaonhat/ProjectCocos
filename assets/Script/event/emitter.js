@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-class mEmitter {
+class Emitter {
     constructor() {
         this._emiter = new EventEmitter();
         this._emiter.setMaxListeners(100);
@@ -16,11 +16,21 @@ class mEmitter {
     removeEvent(event, listener) {
         this._emiter.removeListener(event, listener);
     }
+    registerEventMap(eventMap) {
+        for (let eventName in eventMap) {
+            this.registerEvent(eventName, eventMap[eventName]);
+        }
+    }
+    unregisterEventMap(eventMap) {
+        for (let eventName in eventMap) {
+            this.removeEvent(eventName, eventMap[eventName]);
+        }
+    }
     destroy() {
         this._emiter.removeAllListeners();
         this._emiter = null;
-        mEmitter.instance = null;
+        Emitter.instance = null;
     }
 }
 
-module.exports = new mEmitter();
+module.exports = new Emitter();

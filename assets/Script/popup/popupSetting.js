@@ -1,5 +1,5 @@
-const Emitter = require('mEmitter');
-
+const Emitter = require('emitter');
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: require("popupItem"),
 
@@ -8,17 +8,17 @@ cc.Class({
 
     onMusicToggleChange(toggle){
         if(toggle.isChecked){
-            Emitter.emit("playMusic");
+            Emitter.emit(EventKeys.PLAY_MUSIC);
         } else {
-            Emitter.emit("stopMusic");
+            Emitter.emit(EventKeys.STOP_MUSIC);
         }
     },
 
     onSoundToggleChange(toggle){
         if(toggle.isChecked){
-            Emitter.emit("turnOnSound");
+            Emitter.emit(EventKeys.ENABLE_SOUND, true);
         } else {
-            Emitter.emit("turnOffSound");
+            Emitter.emit(EventKeys.ENABLE_SOUND, false);
         }
     }
 });

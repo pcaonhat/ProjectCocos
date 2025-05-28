@@ -1,4 +1,5 @@
-const Emitter = require("mEmitter");
+const Emitter = require("emitter");
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: cc.Component,
 
@@ -13,16 +14,16 @@ cc.Class({
     onLoad() {
         this.hideSetting();
         this.hideRank();
-        this.initEventHandlers();
-        this.registerEvent();
+        this.initEventMap();
+        Emitter.registerEventMap(this.eventMap);
     },
 
-    initEventHandlers() {
+    initEventMap() {
         this.eventMap = {
-            "showSetting": this.showSetting.bind(this),
-            "hideSetting": this.hideSetting.bind(this),
-            "showRank": this.showRank.bind(this),
-            "hideRank": this.hideRank.bind(this),
+            [EventKeys.SHOW_SETTING]: this.showSetting.bind(this),
+            [EventKeys.HIDE_SETTING]: this.hideSetting.bind(this),
+            [EventKeys.SHOW_RANK]: this.showRank.bind(this),
+            [EventKeys.HIDE_RANK]: this.hideRank.bind(this),
         };
     },
 
@@ -69,30 +70,8 @@ cc.Class({
         return this.isShowing;
     },
 
-
-    initEventHandlers() {
-        this.eventMap = {
-            "showSetting": this.showSetting.bind(this),
-            "hideSetting": this.hideSetting.bind(this),
-            "showRank": this.showRank.bind(this),
-            "hideRank": this.hideRank.bind(this)
-        };
-    },
-
-    registerEvent() {
-        for (let eventName in this.eventMap) {
-            Emitter.registerEvent(eventName, this.eventMap[eventName]);
-        }
-    },
-
-    unregisterEvent() {
-        for (let eventName in this.eventMap) {
-            Emitter.removeEvent(eventName, this.eventMap[eventName]);
-        }
-    },
-
     onDestroy() {
-        this.unregisterEvent();
+        Emitter.unregisterEventMap(this.eventMap);
         this.eventMap = null;
     }
 });

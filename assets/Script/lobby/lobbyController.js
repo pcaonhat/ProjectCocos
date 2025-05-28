@@ -1,4 +1,5 @@
-const Emitter = require("mEmitter");
+const Emitter = require("emitter");
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: cc.Component,
 
@@ -6,18 +7,18 @@ cc.Class({
     },
 
     showSettingPopup(){
-        Emitter.emit("showSetting");
+        Emitter.emit(EventKeys.SHOW_SETTING);
     },
 
     hideSettingPopup(){
-        Emitter.emit("hideSetting");
+        Emitter.emit(EventKeys.HIDE_SETTING);
     },
 
     showRankPopup(){
-        Emitter.emit("showRank");
+        Emitter.emit(EventKeys.SHOW_RANK);
     },
 
     hideRankPopup(){
-        Emitter.emit("hideRank");
+        Emitter.emit(EventKeys.HIDE_RANK);
     }
 });
