@@ -29,8 +29,10 @@ cc.Class({
         this.eventMap = {
             [EventKeys.PLAY_ON_CLICK_SOUND]: this.playOnclickSound.bind(this),
             [EventKeys.ENABLE_SOUND]: this.setIsPlayingSound.bind(this),
+            [EventKeys.SET_SOUND_VOLUME]: this.setSoundVolume.bind(this),
             [EventKeys.PLAY_MUSIC]: this.playMusic.bind(this),
             [EventKeys.STOP_MUSIC]: this.stopMusic.bind(this),
+            [EventKeys.SET_MUSIC_VOLUME]: this.setMusicVolume.bind(this),
         };
     },
     

@@ -2870,7 +2870,7 @@
         "__id__": 221
       }
     ],
-    "_active": false,
+    "_active": true,
     "_level": 3,
     "_components": [
       {
@@ -10691,7 +10691,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 30,
+      "x": 23,
       "y": 52,
       "z": 0
     },
@@ -11658,7 +11658,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 30,
+      "x": 23,
       "y": -3,
       "z": 0
     },

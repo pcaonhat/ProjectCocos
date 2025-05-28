@@ -24,11 +24,11 @@ cc.Class({
 
     onMusicSliderChange(slider){
         const volume = slider.progress;
-        Emitter.emit("setMusicVolume", volume);
+        Emitter.emit(EventKeys.SET_MUSIC_VOLUME, volume);
     },
 
     onSoundSliderChange(slider){
         const volume = slider.progress;
-        Emitter.emit("setSoundVolume", volume);
+        Emitter.emit(EventKeys.SET_SOUND_VOLUME, volume);
     },
 });
