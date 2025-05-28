@@ -3,7 +3,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        popupController: require("popupController"),
     },
 
     showSettingPopup(){
