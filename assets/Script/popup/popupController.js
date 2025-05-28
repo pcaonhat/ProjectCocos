@@ -1,4 +1,5 @@
-
+const Emitter = require("emitter");
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: cc.Component,
 
@@ -13,6 +14,17 @@ cc.Class({
     onLoad() {
         this.hideSetting();
         this.hideRank();
+        this.initEventMap();
+        Emitter.registerEventMap(this.eventMap);
+    },
+
+    initEventMap() {
+        this.eventMap = {
+            [EventKeys.SHOW_SETTING]: this.showSetting.bind(this),
+            [EventKeys.HIDE_SETTING]: this.hideSetting.bind(this),
+            [EventKeys.SHOW_RANK]: this.showRank.bind(this),
+            [EventKeys.HIDE_RANK]: this.hideRank.bind(this),
+        };
     },
 
     showSetting(){
@@ -56,5 +68,10 @@ cc.Class({
 
     getIsShowing() {
         return this.isShowing;
+    },
+
+    onDestroy() {
+        Emitter.unregisterEventMap(this.eventMap);
+        this.eventMap = null;
     }
 });

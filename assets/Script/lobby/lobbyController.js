@@ -1,25 +1,24 @@
-
-
+const Emitter = require("emitter");
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        popupController: require("popupController"),
     },
 
     showSettingPopup(){
-        this.popupController.showSetting();
+        Emitter.emit(EventKeys.SHOW_SETTING);
     },
 
     hideSettingPopup(){
-        this.popupController.hideSetting();
+        Emitter.emit(EventKeys.HIDE_SETTING);
     },
 
     showRankPopup(){
-        this.popupController.showRank();
+        Emitter.emit(EventKeys.SHOW_RANK);
     },
 
     hideRankPopup(){
-        this.popupController.hideRank();
+        Emitter.emit(EventKeys.HIDE_RANK);
     }
 });

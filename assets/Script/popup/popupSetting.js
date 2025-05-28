@@ -1,24 +1,34 @@
-
+const Emitter = require('emitter');
+const EventKeys = require("eventKeys");
 cc.Class({
     extends: require("popupItem"),
 
     properties: {
-        soundController: require("soundController"),
     },
 
     onMusicToggleChange(toggle){
         if(toggle.isChecked){
-            this.soundController.playMusic();
+            Emitter.emit(EventKeys.PLAY_MUSIC);
         } else {
-            this.soundController.stopMusic();
+            Emitter.emit(EventKeys.STOP_MUSIC);
         }
     },
 
     onSoundToggleChange(toggle){
         if(toggle.isChecked){
-            this.soundController.setIsPlayingSound(true);
+            Emitter.emit(EventKeys.ENABLE_SOUND, true);
         } else {
-            this.soundController.setIsPlayingSound(false);
+            Emitter.emit(EventKeys.ENABLE_SOUND, false);
         }
-    }
+    },
+
+    onMusicSliderChange(slider){
+        const volume = slider.progress;
+        Emitter.emit(EventKeys.SET_MUSIC_VOLUME, volume);
+    },
+
+    onSoundSliderChange(slider){
+        const volume = slider.progress;
+        Emitter.emit(EventKeys.SET_SOUND_VOLUME, volume);
+    },
 });
