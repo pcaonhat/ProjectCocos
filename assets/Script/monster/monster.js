@@ -29,7 +29,7 @@ cc.Class({
     },
 
     update(){
-        if(currentHp <= 0){
+        if(this.currentHp <= 0){
             onDie();
         }
     },

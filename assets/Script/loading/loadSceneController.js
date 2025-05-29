@@ -24,6 +24,6 @@ cc.Class({
 
     loadScene(targetScene){
         cc.sys.localStorage.removeItem('targetScene')
-        cc.Director.loadScene(targetScene)
+        cc.director.loadScene(targetScene)
     }
 });
