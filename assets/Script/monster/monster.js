@@ -60,7 +60,8 @@ cc.Class({
     },
 
     onDie(){
-        this.node.destroy();
+        cc.Tween.stopAllByTarget(this.node);
+        this.stopAllAnimations();
     },
 
     onCollisionExit: function (other, self) {
