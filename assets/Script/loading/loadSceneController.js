@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {
         progressBar: cc.ProgressBar,
-        loadingLabel: cc.Label
+        labelProgress: cc.Label
     },
 
     onLoad() {
@@ -13,12 +13,17 @@ cc.Class({
             return;
         }
 
-        cc.director.preloadScene(targetScene, this.updateProgressBar.bind(this), () => cc.director.loadScene(targetScene));
+        cc.director.preloadScene(targetScene, this.updateProgressBar.bind(this), () => this.loadScene(targetScene));
     },
 
     updateProgressBar(completedItem, totalItem) {
         const progress = completedItem / totalItem;
         this.progressBar.progress = progress;
-        this.loadingLabel.string = `Loading: ${(progress * 100).toFixed(0)}%`;
+        this.labelProgress.string = `${(progress * 100).toFixed(0)}%`;
+    },
+
+    loadScene(targetScene){
+        cc.sys.localStorage.removeItem('targetScene')
+        cc.Director.loadScene(targetScene)
     }
 });
