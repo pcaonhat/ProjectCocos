@@ -70,6 +70,7 @@ cc.Class({
     onCollisionEnter: function(other, self){
         cc.log('Va chạm với: ' + other.node.name);
         if(other.node.group == "obstacles"){
+            Emitter.emit(EventKeys.ON_HIT_EFFECT, other, self);
             this.onDie();
         }
 
