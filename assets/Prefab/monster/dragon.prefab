@@ -473,11 +473,13 @@
     },
     "_enabled": true,
     "id": "",
+    "type": "",
     "maxHp": 200,
     "currentHp": 0,
     "healthBar": {
       "__id__": 10
     },
+    "speed": 0.6,
     "_id": ""
   },
   {
