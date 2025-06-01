@@ -4,7 +4,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        onHitEffect: cc.Node
+        onHitEffect: cc.Prefab,
+        effectLayer: cc.Node,
     },
 
     onLoad () {
@@ -19,14 +20,21 @@ cc.Class({
     },
 
     triggerOnHitEffect(other, self){
-        const otherWorldPosition = other.convertToWorldSpaceAR(cc.v2(0, 0));
-        const selfWorldPosition = self.convertToWorldSpaceAR(cc.v2(0, 0));
+        const midPoint = this.calculateMidPoint(other, self);   
+        const effectPosition = this.effectLayer.convertToNodeSpaceAR(midPoint);     
+        const effect = cc.instantiate(this.onHitEffect);
+        effect.parent = this.effectLayer;
+        effect.setPosition(effectPosition);
+    },
+
+    calculateMidPoint(other, self) {
+        const otherWorldPosition = other.node.convertToWorldSpaceAR(cc.v2(0, 0));
+        const selfWorldPosition = self.node.convertToWorldSpaceAR(cc.v2(0, 0));
 
         const xValue = (otherWorldPosition.x + selfWorldPosition.x) / 2;
         const yValue = (otherWorldPosition.y + selfWorldPosition.y) / 2;
-        const midPoint = cc.v2(xValue, yValue);
+        return cc.v2(xValue, yValue);
     },
-    
 
 
     onDestroy() {
