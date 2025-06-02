@@ -25,6 +25,7 @@ cc.Class({
         const effect = cc.instantiate(this.onHitEffect);
         effect.parent = this.effectLayer;
         effect.setPosition(effectPosition);
+        this.destroyEffect(effect);
     },
 
     calculateMidPoint(other, self) {
@@ -36,6 +37,10 @@ cc.Class({
         return cc.v2(xValue, yValue);
     },
 
+    destroyEffect(effect){
+        const animation = effect.getComponent(cc.Animation);
+        animation.on('finished', () => {effect.destroy();});
+    },
 
     onDestroy() {
         Emitter.unregisterEventMap(this.eventMap);
