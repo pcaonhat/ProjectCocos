@@ -13,7 +13,9 @@ const EventKeys = {
     STOP_MUSIC: "stopMusic",
     SET_MUSIC_VOLUME: "setMusicVolume",
 
-    REMOVE_MONSTER: "removeMonster"
+    REMOVE_MONSTER: "removeMonster",
+
+    ON_HIT_EFFECT: "onHitEffect",
 }
 
 module.exports = EventKeys;
