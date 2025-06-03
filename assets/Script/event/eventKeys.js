@@ -16,6 +16,9 @@ const EventKeys = {
     REMOVE_MONSTER: "removeMonster",
 
     ON_HIT_EFFECT: "onHitEffect",
+
+    MOVE_PLAYER: "movePlayer",
+    SHOOT_BULLet: "shootBullet",
 }
 
 module.exports = EventKeys;
