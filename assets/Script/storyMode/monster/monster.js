@@ -33,7 +33,7 @@ cc.Class({
 
     update(){
         if(this.currentHp <= 0){
-            onDie();
+            this.onDie();
         }
     },
 
@@ -59,9 +59,12 @@ cc.Class({
                             )
                             .start();
     },
+    takeDamage(damage){
+        this.currentHp = this.currentHp - damage;
+        this.healthBar.progress = this.currentHp/this.maxHp;
+    },
 
     onDie(){
-        console.log("this.id", this.id);
         Emitter.emit(EventKeys.REMOVE_MONSTER, this.id);
         this.moveTween.stop();
         this.node.destroy();
@@ -73,9 +76,14 @@ cc.Class({
             Emitter.emit(EventKeys.ON_HIT_EFFECT, other, self);
             this.onDie();
         }
-
         if(other.node.group == "field"){
             this.onDie();
+        }
+        if(other.node.group == "bullet"){
+            const bulletComponent = other.node.getComponent("bullet");
+            const damage = bulletComponent.getDamage();
+            this.takeDamage(damage);
+            Emitter.emit(EventKeys.ON_HIT_EFFECT, other, self);
         }
     }
 
