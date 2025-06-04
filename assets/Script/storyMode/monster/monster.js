@@ -1,6 +1,6 @@
 const Emitter = require('emitter');
 const EventKeys = require("eventKeys");
-
+const StateMachine = require('javascript-state-machine');
 cc.Class({
     extends: cc.Component,
 
@@ -32,14 +32,29 @@ cc.Class({
     },
 
     update(){
-        if(this.currentHp <= 0){
-            this.onDie();
+        if(this.currentHp <= 0 && this.stateMachine.state !== 'dead'){
+            this.stateMachine.die();
         }
     },
 
     init(id){
         this.id = id;
-        this.onMove();
+        this.initStateMachine();
+        this.stateMachine.moving();
+    },
+
+    initStateMachine() {
+        this.stateMachine = new StateMachine({
+            init: 'idle',
+            transitions: [
+                { name: 'moving', from: ['idle'], to: 'move' },
+                { name: 'die', from: ['idle', 'move'], to: 'dead' }
+            ],
+            methods: {
+                onMove: () => { this.onMove(); },
+                onDie: () => { this.onDie(); }
+            }
+        });
     },
 
     onMove() {
@@ -60,11 +75,13 @@ cc.Class({
                             .start();
     },
     takeDamage(damage){
+        if(this.stateMachine.state === 'dead') return;
         this.currentHp = this.currentHp - damage;
-        this.healthBar.progress = this.currentHp/this.maxHp;
+        this.healthBar.progress = this.currentHp / this.maxHp;
     },
 
     onDie(){
+        
         Emitter.emit(EventKeys.REMOVE_MONSTER, this.id);
         this.moveTween.stop();
         this.node.destroy();
@@ -74,10 +91,10 @@ cc.Class({
         cc.log('Va chạm với: ' + other.node.name);
         if(other.node.group == "obstacles"){
             Emitter.emit(EventKeys.ON_HIT_EFFECT, other, self);
-            this.onDie();
+            this.stateMachine.die();
         }
         if(other.node.group == "field"){
-            this.onDie();
+            this.stateMachine.die();
         }
         if(other.node.group == "bullet"){
             const bulletComponent = other.node.getComponent("bullet");

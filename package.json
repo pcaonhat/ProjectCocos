@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/pcaonhat/ProjectCocos/issues"
   },
-  "homepage": "https://github.com/pcaonhat/ProjectCocos#readme"
+  "homepage": "https://github.com/pcaonhat/ProjectCocos#readme",
+  "devDependencies": {
+    "javascript-state-machine": "^3.1.0"
+  }
 }
